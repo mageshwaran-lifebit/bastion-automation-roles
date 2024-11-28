@@ -1,0 +1,62 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "WildCardOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeAvailabilityZones",
+        "ec2:DescribeInstanceTypes",
+        "ec2:DescribeInstanceTypeOfferings",
+        "ec2:DescribeImages",
+        "ec2:GetEbsEncryptionByDefault",
+        "ec2:DescribeVolumes",
+        "ec2:GetEbsDefaultKmsKeyId",
+        "ec2:DescribeRegions",
+        "ec2:DescribeInstanceStatus",
+        "ec2:DescribeAddresses"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "VpcOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:GetSecurityGroupsForVpc"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:vpc/*"
+    },
+    {
+      "Sid": "ModifyInstanceAttribute",
+      "Effect": "Allow",
+      "Action": "ec2:ModifyInstanceAttribute",
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:instance/*",
+        "arn:aws:ec2:us-east-1:017642882492:volume/*",
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*"
+      ]
+    },
+    {
+      "Sid": "ManageInstanceWildOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:RunInstances"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ManageEc2",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeInstanceAttribute",
+        "ec2:AssociateIamInstanceProfile",
+        "ec2:DisassociateIamInstanceProfile",
+        "ec2:StopInstances",
+        "ec2:TerminateInstances",
+        "ec2:RebootInstances"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:instance/*"
+    }
+  ]
+}

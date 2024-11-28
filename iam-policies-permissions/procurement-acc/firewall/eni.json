@@ -1,0 +1,61 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "WildCardOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeNetworkInterfaceAttribute"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "EniCreate",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateNetworkInterface"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:network-interface/*",
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*",
+        "arn:aws:ec2:us-east-1:017642882492:subnet/*"
+      ]
+    },
+    {
+      "Sid": "EniAttachAndDetach",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AttachNetworkInterface",
+        "ec2:DetachNetworkInterface"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:network-interface/*",
+        "arn:aws:ec2:us-east-1:017642882492:instance/*"
+      ]
+    },
+    {
+      "Sid": "EniModify",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:ModifyNetworkInterfaceAttribute"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:network-interface/*",
+        "arn:aws:ec2:us-east-1:017642882492:instance/*",
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*"
+      ]
+    },
+    {
+      "Sid": "EniDelete",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:ResetNetworkInterfaceAttribute",
+        "ec2:DeleteNetworkInterface"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:network-interface/*"
+      ]
+    }
+  ]
+}
