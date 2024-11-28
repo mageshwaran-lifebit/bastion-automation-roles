@@ -5,7 +5,8 @@
       "Sid": "IamWildCard",
       "Effect": "Allow",
       "Action": [
-        "iam:ListInstanceProfiles"
+        "iam:ListInstanceProfiles",
+        "iam:ListRoles"
       ],
       "Resource": [
         "*"
@@ -19,6 +20,38 @@
       ],
       "Resource": [
         "arn:aws:iam::017642882492:role/cloudos-fortigate-instance-role"
+      ]
+    },
+    {
+      "Sid": "IamCreate",
+      "Effect": "Allow",
+      "Action": [
+        "iam:ListRolePolicies",
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:PutRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:GetRolePolicy",
+        "iam:ListInstanceProfilesForRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::017642882492:role/fortigate-firewall-instance-role"
+      ]
+    },
+    {
+      "Sid": "IamInstanceProfilr",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetInstanceProfile",
+        "iam:CreateInstanceProfile",
+        "iam:DeleteInstanceProfile",
+        "iam:AddRoleToInstanceProfile",
+        "iam:RemoveRoleFromInstanceProfile"
+      ],
+      "Resource": [
+        "arn:aws:iam::017642882492:instance-profile/cloudos-fortigate-instance-role"
       ]
     }
   ]
