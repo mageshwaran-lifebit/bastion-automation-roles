@@ -1,0 +1,54 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "tgwroutetable",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeTransitGatewayRouteTables",
+        "ec2:CreateTransitGatewayRouteTable",
+        "ec2:DeleteTransitGatewayRouteTable"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "tgwroutetabledetails",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:GetTransitGatewayRouteTableAssociations",
+        "ec2:GetTransitGatewayRouteTablePropagations",
+        "ec2:SearchTransitGatewayRoutes"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "tgwroutetabledetailscreate",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AssociateTransitGatewayRouteTable",
+        "ec2:EnableTransitGatewayRouteTablePropagation",
+        "ec2:CreateTransitGatewayRoute"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "tgwroutetabledetailsdelete",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DisassociateTransitGatewayRouteTable",
+        "ec2:DisableTransitGatewayRouteTablePropagation",
+        "ec2:ReplaceTransitGatewayRoute",
+        "ec2:DeleteTransitGatewayRoute"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}

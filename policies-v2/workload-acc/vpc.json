@@ -1,0 +1,43 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "vpc",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeVpcs",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeFlowLogs",
+        "ec2:DescribeAvailabilityZones",
+        "ec2:DescribeRouteTables"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "RouteTable",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateRoute",
+        "ec2:DeleteRoute",
+        "ec2:ReplaceRoute"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "Tags",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateTags",
+        "ec2:DescribeTags",
+        "ec2:DeleteTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
