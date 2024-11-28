@@ -3,16 +3,19 @@ import { commonTags } from "../util"
 import { TransitGateway } from "@pulumi/aws/ec2transitgateway"
 
 export const createRamAndShareTgw = (name: string, tgw: TransitGateway): ResourceShare => {
-  const ram = new ResourceShare(name, {
-    name,
-    allowExternalPrincipals: false,
-    tags: {
-      ...commonTags
+  const ram = new ResourceShare(name, 
+    {
+      name,
+      allowExternalPrincipals: false,
+      tags: {
+        ...commonTags
+      },
+      permissionArns:[
+        'arn:aws:ram::aws:permission/AWSRAMDefaultPermissionTransitGateway'
+      ]
     },
-    permissionArns:[
-      'arn:aws:ram::aws:permission/AWSRAMDefaultPermissionTransitGateway'
-    ]
-  })
+    { dependsOn: tgw }
+  )
 
   new ResourceAssociation("tgw-resource", {
     resourceArn: tgw.arn,
