@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "RamTag",
+      "Effect": "Allow",
+      "Action": [
+        "ram:TagResource",
+        "ram:UntagResource"
+      ],
+      "Resource": "arn:aws:ram:us-east-1:017642882492:resource-share/*"
+    },
+    {
+      "Sid": "RamWildCard",
+      "Effect": "Allow",
+      "Action": [
+        "ram:GetResourceShares"
+      ],
+      "Resource": "arn:aws:ram:us-east-1:017642882492:resource-share/*"
+    },
+    {
+      "Sid": "RamIdSpecific",
+      "Effect": "Allow",
+      "Action": [
+        "ram:CreateResourceShare",
+        "ram:DeleteResourceShare",
+        "ram:ListPrincipals",
+        "ram:ListResources",
+        "ram:ListResourceSharePermissions",
+        "ram:GetResourceShareAssociations",
+        "ram:AssociateResourceShare",
+        "ram:DisassociateResourceShare"
+      ],
+      "Resource": "arn:aws:ram:us-east-1:017642882492:resource-share/*",
+      "Condition": {
+        "StringEquals": {
+          "ram:ResourceShareName": "lifebit-resources-share"
+        }
+      }
+    }
+  ]
+}

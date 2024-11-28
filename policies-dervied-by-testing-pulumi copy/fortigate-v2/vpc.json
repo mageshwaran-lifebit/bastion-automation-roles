@@ -1,0 +1,53 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Tags",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "WildCard",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeVpcs",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeNetworkInterfaces"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "VpcSpecific",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateVpc"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:vpc/*"
+    },
+    {
+      "Sid": "VpcIdSpecific",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteVpc",
+        "ec2:ModifyVpcAttribute",
+        "ec2:DescribeVpcAttribute",
+        "ec2:CreateSubnet"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:vpc/*"
+    },
+    {
+      "Sid": "SubnetSpecific",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateSubnet",
+        "ec2:DeleteSubnet"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:subnet/*"
+    }
+  ]
+}

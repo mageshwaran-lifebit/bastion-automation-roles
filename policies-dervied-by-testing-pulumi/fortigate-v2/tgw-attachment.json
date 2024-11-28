@@ -1,0 +1,55 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "TgwAttachmentNoWildcard",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeTransitGatewayVpcAttachments"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "TgwAttachmentCreate",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateTransitGatewayVpcAttachment"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:transit-gateway-attachment/*",
+        "arn:aws:ec2:us-east-1:017642882492:vpc/*",
+        "arn:aws:ec2:us-east-1:017642882492:subnet/*",
+        "arn:aws:ec2:us-east-1:017642882492:transit-gateway/*"
+      ]
+    },
+    {
+      "Sid": "TgwAttachmentEdit",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:ModifyTransitGatewayVpcAttachment"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:transit-gateway-attachment/*",
+        "arn:aws:ec2:us-east-1:017642882492:subnet/*"
+      ]
+    },
+    {
+      "Sid": "TgwAttachmentDelete",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteTransitGatewayVpcAttachment"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:transit-gateway-attachment/*"
+      ]
+    },
+    {
+      "Sid": "TgwRouteable1",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:GetTransitGatewayRouteTablePropagations"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

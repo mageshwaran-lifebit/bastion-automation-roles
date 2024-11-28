@@ -1,0 +1,32 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "List",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeTransitGateways",
+        "ec2:DescribeTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "CreateTgw",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateTransitGateway",
+        "ec2:CreateTags"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:transit-gateway/*"
+    },
+    {
+      "Sid": "TgwWithResourceId",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteTransitGateway",
+        "ec2:ModifyTransitGateway"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:transit-gateway/*"
+    }
+  ]
+}

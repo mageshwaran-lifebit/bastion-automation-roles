@@ -1,0 +1,22 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "tgw",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeTransitGateways",
+        "ec2:CreateTransitGateway",
+        "ec2:CreateTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "vpc",
+      "Effect": "Allow",
+      "Action": [
+      ],
+      "Resource": "*"
+    }
+  ]
+}

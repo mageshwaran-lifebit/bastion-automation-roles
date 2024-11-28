@@ -1,0 +1,24 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "TgwAttachment",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:ModifyTransitGatewayVpcAttachment",
+        "ec2:CreateTransitGatewayVpcAttachment",
+        "ec2:DeleteTransitGatewayVpcAttachment",
+        "ec2:DescribeTransitGatewayVpcAttachments"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "TgwRouteable1",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:GetTransitGatewayRouteTablePropagations"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

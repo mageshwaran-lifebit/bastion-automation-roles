@@ -1,0 +1,37 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ram",
+      "Effect": "Allow",
+      "Action": [
+        "ram:GetResourceShares",
+        "ram:CreateResourceShare",
+        "ram:TagResource",
+        "ram:ListResourceSharePermissions",
+        "ram:ListPrincipals",
+        "ram:ListResources",
+        "ram:GetResourceShareAssociations",
+        "ram:AssociateResourceShare"
+      ],
+      "Resource": "arn:aws:ram:eu-west-1:017642882492:resource-share/*"
+    },
+    {
+      "Sid": "ram2",
+      "Effect": "Allow",
+      "Action": [
+        "ram:ListResourceTypes",
+        "ram:ListPermissions"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ramper",
+      "Effect": "Allow",
+      "Action": [
+        "ram:GetPermission"
+      ],
+      "Resource": "arn:aws:ram::aws:permission/AWSRAMDefaultPermissionTransitGateway"
+    }
+  ]
+}
