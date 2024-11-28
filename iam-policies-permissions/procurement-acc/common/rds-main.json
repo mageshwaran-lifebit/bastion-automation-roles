@@ -78,58 +78,6 @@
         "rds:DeleteDBSubnetGroup"
       ],
       "Resource": "arn:aws:rds:us-east-1:017642882492:subgrp:*"
-    },
-    {
-      "Sid": "KmsTag",
-      "Effect": "Allow",
-      "Action": [
-        "kms:ListResourceTags",
-        "kms:TagResource",
-        "kms:UntagResource"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "Kms",
-      "Effect": "Allow",
-      "Action": [
-        "kms:DescribeKey",
-        "kms:CreateKey",
-        "kms:GetKeyPolicy",
-        "kms:ScheduleKeyDeletion",
-        "kms:EnableKeyRotation",
-        "kms:GetKeyRotationStatus",
-        "kms:Decrypt",
-        "kms:GenerateDataKey",
-        "kms:CreateGrant"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "KmsAlias",
-      "Effect": "Allow",
-      "Action": [
-        "kms:ListAliases",
-        "kms:CreateAlias",
-        "kms:DeleteAlias",
-        "kms:UpdateAlias"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "SecretManagers",
-      "Effect": "Allow",
-      "Action": [
-        "secretsmanager:CreateSecret",
-        "secretsmanager:PutSecretValue",
-        "secretsmanager:DescribeSecret",
-        "secretsmanager:GetSecretValue",
-        "secretsmanager:ListSecrets",
-        "secretsmanager:DeleteSecret",
-        "secretsmanager:TagResource",
-        "secretsmanager:RotateSecret"
-      ],
-      "Resource": "*"
     }
   ]
 }
