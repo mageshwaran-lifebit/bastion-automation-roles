@@ -1,0 +1,51 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ElasticIp",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AllocateAddress",
+        "ec2:ReleaseAddress"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:elastic-ip/*"
+      ]
+    },
+    {
+      "Sid": "CreateNat",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateNatGateway"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:natgateway/*",
+        "arn:aws:ec2:us-east-1:017642882492:elastic-ip/*",
+        "arn:aws:ec2:us-east-1:017642882492:subnet/*"
+      ]
+    },
+    {
+      "Sid": "DeleteNat",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteNatGateway"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:natgateway/*"
+      ]
+    },
+    {
+      "Sid": "ManageNat",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AssociateNatGatewayAddress",
+        "ec2:DisassociateNatGatewayAddress"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:elastic-ip/*",
+        "arn:aws:ec2:us-east-1:017642882492:natgateway/*",
+        "arn:aws:ec2:us-east-1:017642882492:network-interface/*"
+      ]
+    }
+  ]
+}

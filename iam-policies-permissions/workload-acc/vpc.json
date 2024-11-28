@@ -63,17 +63,38 @@
       "Resource": "arn:aws:ec2:us-east-1:017642882492:subnet/*"
     },
     {
-      "Sid": "VpcRoutes",
+      "Sid": "CreateVpcRoute",
       "Effect": "Allow",
       "Action": [
-        "ec2:CreateRouteTable",
-        "ec2:DeleteRouteTable",
+        "ec2:CreateRouteTable"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*",
+        "arn:aws:ec2:us-east-1:017642882492:vpc/*"
+      ]
+    },
+    {
+      "Sid": "DeleteVpcRoutes",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteRouteTable"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*"
+      ]
+    },
+    {
+      "Sid": "ManageVpcRoutes",
+      "Effect": "Allow",
+      "Action": [
         "ec2:AssociateRouteTable",
         "ec2:DisassociateRouteTable",
         "ec2:ReplaceRouteTableAssociation"
       ],
       "Resource": [
-        "*"
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*",
+        "arn:aws:ec2:us-east-1:017642882492:internet-gateway/*",
+        "arn:aws:ec2:us-east-1:017642882492:subnet/*"
       ]
     },
     {
@@ -85,7 +106,7 @@
         "ec2:ReplaceRoute"
       ],
       "Resource": [
-        "*"
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*"
       ]
     }
   ]

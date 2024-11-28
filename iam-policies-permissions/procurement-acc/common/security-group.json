@@ -42,7 +42,7 @@
       ],
       "Resource": [
         "arn:aws:ec2:us-east-1:017642882492:security-group/*",
-        "arn:aws:ec2:*:017642882492:security-group-rule/*"
+        "arn:aws:ec2:us-east-1:017642882492:security-group-rule/*"
       ]
     },
     {
@@ -53,8 +53,8 @@
       ],
       "Resource": [
         "arn:aws:ec2:us-east-1:017642882492:security-group/*",
-        "arn:aws:ec2:*:017642882492:security-group-rule/*",
-        "arn:aws:ec2:*:017642882492:prefix-list/*"
+        "arn:aws:ec2:us-east-1:017642882492:security-group-rule/*",
+        "arn:aws:ec2:us-east-1:017642882492:prefix-list/*"
       ]
     },
     {

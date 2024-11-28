@@ -67,41 +67,57 @@
       "Effect": "Allow",
       "Action": [
         "ec2:CreateInternetGateway",
+        "ec2:DeleteInternetGateway"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:internet-gateway/*"
+      ]
+    },
+    {
+      "Sid": "ManageIgw",
+      "Effect": "Allow",
+      "Action": [
         "ec2:AttachInternetGateway",
-        "ec2:DeleteInternetGateway",
         "ec2:DetachInternetGateway"
       ],
       "Resource": [
-        "*"
+        "arn:aws:ec2:us-east-1:017642882492:internet-gateway/*",
+        "arn:aws:ec2:us-east-1:017642882492:vpc/*"
       ]
     },
     {
-      "Sid": "CreateOrDeleteNat",
+      "Sid": "CreateVpcRoute",
       "Effect": "Allow",
       "Action": [
-        "ec2:AllocateAddress",
-        "ec2:ReleaseAddress",
-        "ec2:AssociateNatGatewayAddress",
-        "ec2:DisassociateNatGatewayAddress",
-        "ec2:CreateNatGateway",
-        "ec2:DeleteNatGateway"
+        "ec2:CreateRouteTable"
       ],
       "Resource": [
-        "*"
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*",
+        "arn:aws:ec2:us-east-1:017642882492:vpc/*"
       ]
     },
     {
-      "Sid": "VpcRoutes",
+      "Sid": "DeleteVpcRoutes",
       "Effect": "Allow",
       "Action": [
-        "ec2:CreateRouteTable",
-        "ec2:DeleteRouteTable",
+        "ec2:DeleteRouteTable"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*"
+      ]
+    },
+    {
+      "Sid": "ManageVpcRoutes",
+      "Effect": "Allow",
+      "Action": [
         "ec2:AssociateRouteTable",
         "ec2:DisassociateRouteTable",
         "ec2:ReplaceRouteTableAssociation"
       ],
       "Resource": [
-        "*"
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*",
+        "arn:aws:ec2:us-east-1:017642882492:internet-gateway/*",
+        "arn:aws:ec2:us-east-1:017642882492:subnet/*"
       ]
     },
     {
@@ -113,7 +129,7 @@
         "ec2:ReplaceRoute"
       ],
       "Resource": [
-        "*"
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*"
       ]
     }
   ]
