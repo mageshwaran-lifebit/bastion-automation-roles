@@ -40,7 +40,12 @@
       ],
       "Resource": [
         "arn:aws:ec2:us-east-1:017642882492:vpc-endpoint/*"
-      ]
+      ],
+      "Condition": {
+        "StringEquals": {
+          "ec2:VpceServiceName": "com.amazonaws.us-east-1.s3"
+        }
+      }
     }
   ]
 }
