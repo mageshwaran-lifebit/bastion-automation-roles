@@ -1,0 +1,98 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Tags",
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:DescribeTags",
+        "elasticloadbalancing:AddTags",
+        "elasticloadbalancing:RemoveTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "ElbWildCardOnly",
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:DescribeListeners",
+        "elasticloadbalancing:DescribeLoadBalancers",
+        "elasticloadbalancing:DescribeLoadBalancerAttributes",
+        "elasticloadbalancing:DescribeTargetGroups",
+        "elasticloadbalancing:DescribeListenerAttributes",
+        "elasticloadbalancing:DescribeTargetGroupAttributes",
+        "elasticloadbalancing:DescribeTargetGroups",
+        "elasticloadbalancing:DescribeTargetHealth"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "CreateLB",
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:CreateLoadBalancer",
+        "elasticloadbalancing:DeleteLoadBalancer",
+        "elasticloadbalancing:ModifyLoadBalancerAttributes"
+      ],
+      "Resource": [
+        "arn:aws:elasticloadbalancing:us-east-1:017642882492:loadbalancer/net/*/*"
+      ]
+    },
+    {
+      "Sid": "CreateOrUpdateListener",
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:CreateListener"
+      ],
+      "Resource": [
+        "arn:aws:elasticloadbalancing:us-east-1:017642882492:loadbalancer/net/*/*"
+      ]
+    },
+    {
+      "Sid": "CreateOrUpdateListener",
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:ModifyListener",
+        "elasticloadbalancing:DeleteListener",
+        "elasticloadbalancing:ModifyListenerAttributes"
+      ],
+      "Resource": [
+        "arn:aws:elasticloadbalancing:us-east-1:017642882492:listener/net/*/*/*"
+      ]
+    },
+    {
+      "Sid": "CreateOrUpdateTargetGroup",
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:CreateTargetGroup",
+        "elasticloadbalancing:ModifyTargetGroup",
+        "elasticloadbalancing:DeleteTargetGroup",
+        "elasticloadbalancing:ModifyTargetGroupAttributes"
+      ],
+      "Resource": [
+        "arn:aws:elasticloadbalancing:us-east-1:017642882492:targetgroup/*/*"
+      ]
+    },
+    {
+      "Sid": "CreateOrUpdateTarget",
+      "Effect": "Allow",
+      "Action": [
+        "elasticloadbalancing:RegisterTargets",
+        "elasticloadbalancing:DeregisterTargets"
+      ],
+      "Resource": [
+        "arn:aws:elasticloadbalancing:us-east-1:017642882492:targetgroup/*/*"
+      ]
+    },
+    {
+      "Sid": "CreateServiceLinkedRole",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateServiceLinkedRole"
+      ],
+      "Resource": "arn:aws:iam::*:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing"
+    }
+  ]
+}

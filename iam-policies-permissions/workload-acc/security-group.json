@@ -1,0 +1,74 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SecurityGroupWildOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeSecurityGroupRules"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "SecurityGroupCreate",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateSecurityGroup"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*",
+        "arn:aws:ec2:us-east-1:017642882492:vpc/*"
+      ]
+    },
+    {
+      "Sid": "SecurityGroupDelete",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteSecurityGroup"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*"
+      ]
+    },
+    {
+      "Sid": "AuthorizeSecurityGroupRules",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AuthorizeSecurityGroupIngress",
+        "ec2:AuthorizeSecurityGroupEgress"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*",
+        "arn:aws:ec2:*:017642882492:security-group-rule/*"
+      ]
+    },
+    {
+      "Sid": "ModifySecurityGroupRules",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:ModifySecurityGroupRules"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*",
+        "arn:aws:ec2:*:017642882492:security-group-rule/*",
+        "arn:aws:ec2:*:017642882492:prefix-list/*"
+      ]
+    },
+    {
+      "Sid": "EditSecurityGroupRules",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:RevokeSecurityGroupIngress",
+        "ec2:RevokeSecurityGroupEgress",
+        "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
+        "ec2:UpdateSecurityGroupRuleDescriptionsIngress"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*"
+      ]
+    }
+  ]
+}

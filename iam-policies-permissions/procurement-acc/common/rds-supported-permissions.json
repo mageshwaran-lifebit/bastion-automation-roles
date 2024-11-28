@@ -1,0 +1,83 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "KmsTag",
+      "Effect": "Allow",
+      "Action": [
+        "kms:ListResourceTags",
+        "kms:TagResource",
+        "kms:UntagResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "KmsWildCardOnly",
+      "Effect": "Allow",
+      "Action": [
+        "kms:ListAliases",
+        "kms:CreateKey"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "KmsSpecific",
+      "Effect": "Allow",
+      "Action": [
+        "kms:DescribeKey",
+        "kms:GetKeyPolicy",
+        "kms:ScheduleKeyDeletion",
+        "kms:EnableKeyRotation",
+        "kms:GetKeyRotationStatus",
+        "kms:Decrypt",
+        "kms:GenerateDataKey",
+        "kms:CreateGrant"
+      ],
+      "Resource": [
+        "arn:aws:kms:us-east-1:017642882492:key/*"
+      ]
+    },
+    {
+      "Sid": "KmsAlias",
+      "Effect": "Allow",
+      "Action": [
+        "kms:CreateAlias",
+        "kms:DeleteAlias",
+        "kms:UpdateAlias"
+      ],
+      "Resource": [
+        "arn:aws:kms:us-east-1:017642882492:alias/*",
+        "arn:aws:kms:us-east-1:017642882492:key/*"
+      ]
+    },
+    {
+      "Sid": "SecretManagerWildOnly",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:ListSecrets",
+        "secretsmanager:TagResource",
+        "secretsmanager:UntagResource"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "SecretManagers",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:CreateSecret",
+        "secretsmanager:PutSecretValue",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DeleteSecret",
+        "secretsmanager:RotateSecret"
+      ],
+      "Resource": [
+        "arn:aws:secretsmanager:us-east-1:017642882492:secret:*"
+      ]
+    }
+  ]
+}

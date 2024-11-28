@@ -1,0 +1,56 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "TgwRouteTableWildCardOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeTransitGatewayRouteTables",
+        "ec2:GetTransitGatewayRouteTableAssociations",
+        "ec2:GetTransitGatewayRouteTablePropagations"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "TgwRouteTableCreate",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateTransitGatewayRouteTable"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:transit-gateway/*",
+        "arn:aws:ec2:us-east-1:017642882492:transit-gateway-route-table/*"
+      ]
+    },
+    {
+      "Sid": "TgwRouteTableDelete",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteTransitGatewayRouteTable",
+        "ec2:SearchTransitGatewayRoutes",
+        "ec2:DeleteTransitGatewayRoute"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:transit-gateway-route-table/*"
+      ]
+    },
+    {
+      "Sid": "TgwRouteTableDetailsEdit",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AssociateTransitGatewayRouteTable",
+        "ec2:DisassociateTransitGatewayRouteTable",
+        "ec2:EnableTransitGatewayRouteTablePropagation",
+        "ec2:DisableTransitGatewayRouteTablePropagation",
+        "ec2:CreateTransitGatewayRoute",
+        "ec2:ReplaceTransitGatewayRoute"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:*:transit-gateway-attachment/*",
+        "arn:aws:ec2:us-east-1:017642882492:transit-gateway-route-table/*"
+      ]
+    }
+  ]
+}

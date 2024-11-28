@@ -1,0 +1,46 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "EndpointWildOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeVpcEndpoints",
+        "ec2:DescribeVpcEndpointServices"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "EndpointCreate",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateVpcEndpoint",
+        "ec2:ModifyVpcEndpoint"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:route-table/*",
+        "arn:aws:ec2:us-east-1:017642882492:vpc/*",
+        "arn:aws:ec2:us-east-1:017642882492:vpc-endpoint/*",
+        "arn:aws:ec2:us-east-1:017642882492:subnet/*",
+        "arn:aws:ec2:us-east-1:017642882492:security-group/*"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "ec2:VpceServiceName": "com.amazonaws.us-east-1.s3"
+        }
+      }
+    },
+    {
+      "Sid": "Endpoint",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteVpcEndpoints"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:vpc-endpoint/*"
+      ]
+    }
+  ]
+}

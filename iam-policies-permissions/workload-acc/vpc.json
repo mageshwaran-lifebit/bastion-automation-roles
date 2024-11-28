@@ -1,0 +1,92 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Tags",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateTags",
+        "ec2:DeleteTags",
+        "ec2:DescribeTags"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "WildCardOnly",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeAccountAttributes",
+        "ec2:DescribeAvailabilityZones",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeRouteTables",
+        "ec2:DescribeFlowLogs",
+        "ec2:DescribeNetworkInterfaces"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "VpcSpecific",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateVpc"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:vpc/*"
+    },
+    {
+      "Sid": "VpcIdSpecific",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteVpc",
+        "ec2:ModifyVpcAttribute",
+        "ec2:DescribeVpcAttribute"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:vpc/*"
+    },
+    {
+      "Sid": "SubnetCreate",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateSubnet"
+      ],
+      "Resource": [
+        "arn:aws:ec2:us-east-1:017642882492:vpc/*",
+        "arn:aws:ec2:us-east-1:017642882492:subnet/*"
+      ]
+    },
+    {
+      "Sid": "SubnetDelete",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DeleteSubnet"
+      ],
+      "Resource": "arn:aws:ec2:us-east-1:017642882492:subnet/*"
+    },
+    {
+      "Sid": "VpcRoutes",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateRouteTable",
+        "ec2:DeleteRouteTable",
+        "ec2:AssociateRouteTable",
+        "ec2:DisassociateRouteTable",
+        "ec2:ReplaceRouteTableAssociation"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Sid": "EditVpcRoutes",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:CreateRoute",
+        "ec2:DeleteRoute",
+        "ec2:ReplaceRoute"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
