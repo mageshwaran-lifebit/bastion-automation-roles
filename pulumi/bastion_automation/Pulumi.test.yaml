@@ -1,0 +1,9 @@
+encryptionsalt: v1:qEfA0DCXfew=:v1:CvuYCZjspVgxKIII:IvUagkzj+3Vp/p9Lq/8dkgu/HHOUxg==
+config:
+  aws:region: us-east-2
+  aws:profile: sandbox_pulumi
+  aws:assumeRole: 
+    # roleArn: arn:aws:iam::017642882492:role/bastion-automation-fortigate-v2-role
+    roleArn: arn:aws:iam::017642882492:role/bastion-automation-procurement-role
+  sample: test
+
