@@ -26,10 +26,10 @@ export class VpcManager {
   }
 
   addSubnet(name: string, cidrBlock: string, zoneIdx: number): Subnet {
-      return new Subnet(name, {
-        availabilityZone: azs.then(az => az.names?.[zoneIdx]),
-        cidrBlock: cidrBlock,
-        vpcId: this.vpc.id
-      })
+    return new Subnet(name, {
+      availabilityZone: azs.then(az => az.names?.[zoneIdx]),
+      cidrBlock: cidrBlock,
+      vpcId: this.vpc.id
+    })
   }
 }
