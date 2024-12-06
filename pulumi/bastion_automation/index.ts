@@ -37,7 +37,7 @@ const ram = createRamAndShareTgw('firewall-tgw-share', tgw)
 addPrincipal(ram, '495869644545')
 
 const attachment1 = createTgwAttachment('tgw-attachment-1', vpc, tgw, [privateSubnet1, privateSubnet2])
-pointRouteToTgw('networking-vpc-tgw', privateRt, tgw, VPC_CIDR)
+pointRouteToTgw('networking-vpc-tgw', privateRt, attachment1, VPC_CIDR)
 
 // tgw route tables
 const networkingTgwRt = createTgwRouteTable('networking-rt', tgw)

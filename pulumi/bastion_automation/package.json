@@ -1,6 +1,6 @@
 {
     "name": "bastion_automation",
-    "main": "index.ts",
+    "main": "workload.ts",
     "devDependencies": {
         "@types/node": "^18",
         "typescript": "^5.0.0"

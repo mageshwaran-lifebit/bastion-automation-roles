@@ -1,10 +1,16 @@
-import { InternetGateway, NatGateway, Route, RouteTable, RouteTableAssociation, Subnet, Vpc } from "@pulumi/aws/ec2"
+import { InternetGateway, NatGateway, Route, RouteTable, RouteTableAssociation, SecurityGroup, Subnet, Vpc, VpcEndpoint } from "@pulumi/aws/ec2"
 import { commonTags } from "../util"
 import { getAvailabilityZones } from "@pulumi/aws/getAvailabilityZones.js"
-import { TransitGateway } from "@pulumi/aws/ec2transitgateway"
+import { VpcAttachment } from "@pulumi/aws/ec2transitgateway"
+import { region } from "@pulumi/aws/config"
 
 
 const azs = getAvailabilityZones({ state: "available" })
+
+export enum Endpoint {
+  S3 = 's3',
+  DynamoDB = 'dynamodb'
+}
 
 export const createVpc = (name: string, cidrBlock: string) => {
   return new Vpc(name, {
@@ -50,12 +56,12 @@ export const createRouteTableAssociation = (name: string, rt: RouteTable, subnet
   })
 }
 
-export const pointRouteToTgw = (name: string, rt: RouteTable, gateway: TransitGateway, destinationCidrBlock: string): void => {
+export const pointRouteToTgw = (name: string, rt: RouteTable, tgwAttachment: VpcAttachment, destinationCidrBlock: string): void => {
   new Route(`${name}-route`, {
     routeTableId: rt.id,
-    transitGatewayId: gateway.id,
+    transitGatewayId: tgwAttachment.transitGatewayId,
     destinationCidrBlock
-  })
+  }, { dependsOn: tgwAttachment })
 }
 
 export const pointRouteToNat = (name: string, rt: RouteTable, gateway: NatGateway): void => {
@@ -88,6 +94,18 @@ export const createNatGw = (name: string, subnet: Subnet): NatGateway => {
   return new NatGateway(name, {
     subnetId: subnet.id,
     connectivityType: 'public',
+    tags: {
+      ...commonTags,
+      Name: name
+    }
+  })
+}
+
+export const createGatewayEndpoint = (name: string, vpc: Vpc, serviceName: Endpoint, routeTables: RouteTable[]) => {
+  return new VpcEndpoint(name, {
+    serviceName: `com.amazonaws.${region}.${serviceName}`,
+    routeTableIds: routeTables.map(x => x.id),
+    vpcId: vpc.id,
     tags: {
       ...commonTags,
       Name: name

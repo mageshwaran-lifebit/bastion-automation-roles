@@ -30,7 +30,7 @@ export const createTgwAttachment = (name: string, vpc: Vpc, tgw: TransitGateway,
     },
     vpcId: vpc.id,
     transitGatewayId: tgw.id
-  })
+  }, {dependsOn: subnets })
 }
 
 export const createTgwRouteTable = (name: string, tgw: TransitGateway): RouteTable => {
