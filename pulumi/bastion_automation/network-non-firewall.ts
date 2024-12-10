@@ -1,10 +1,12 @@
 import { createActiveRoute, createTgw, createTgwAssociation, createTgwAttachment, createTgwDefaultAssociation, createTgwDefaultPropagation, createTgwRouteTable} from './tgw'
 import { createInternetGw, createNatGw, createRouteTable, createSubnet, createVpc, pointRouteToIgw, pointRouteToNat, pointRouteToTgw } from './vpc'
 import { addPrincipal, createRamAndShareTgw } from './ram'
-import { createIpTargetGroup, createNetworkLoadBalancer } from './lb'
+import { addListener, createIpTargetGroup, createNetworkLoadBalancer } from './lb'
 import { launchInstance } from './ec2'
 import { InstanceType } from '@pulumi/aws/ec2'
 import { allowAllInboundTraffic, allowAllOutboundTraffic, allowInboundTraffic, allowOutboundTraffic, createSecurityGroup } from './sg'
+import { createSubnetGroup, launchPostgresInstance } from './rds'
+import { createKey } from './kms'
 
 const VPC_CIDR_PREFIX = '15.0'
 const VPC_CIDR = `${VPC_CIDR_PREFIX}.0.0/16`
@@ -45,6 +47,8 @@ pointRouteToTgw('networking-vpc-tgw', privateRt, attachment1, '16.0.0.0/8')
 
 // tgw route tables
 const networkingTgwRt = createTgwRouteTable('networking-rt', tgw)
+// createTgwAssociation('networking-vpc-ass', attachment1, networkingTgwRt)
+
 createTgwDefaultPropagation('default-propagation', tgw, networkingTgwRt)
 createActiveRoute('anywhere-networking', networkingTgwRt, '0.0.0.0/0', attachment1)
 
@@ -52,7 +56,7 @@ const workloadVpcsTgwRt = createTgwRouteTable('workload-vpcs-rt', tgw)
 createTgwDefaultAssociation('default-association', tgw, workloadVpcsTgwRt)
 createActiveRoute('anywhere-workload', workloadVpcsTgwRt, '0.0.0.0/0', attachment1)
 
-// createTgwAssociation('networking-vpc-ass', attachment1, networkingTgwRt)
+
 /** ********************************* TRANSIT GATEWAY CREATION ********************************* */
 
 
@@ -72,5 +76,13 @@ const sg2 = createSecurityGroup('nlb-sg', vpc, 'Bastion security group')
 allowInboundTraffic('443', sg, 'tcp', 443, 443, { referencedSecurityGroupId: sg2.id }, '443 allowed')
 
 
-createIpTargetGroup('ip-target', vpc, ec2.privateIp, 443)
+const tgGroup = createIpTargetGroup('ip-target', vpc, ec2.privateIp, 443)
+
+addListener('443-listener', nlb, 443, tgGroup)
 /** ********************************* NLB CREATION (NON-FIREWALL MODE) ********************************* */
+
+/** ********************************* RDS CREATION ********************************* */
+const key = createKey('rds-key')
+const subnetGroup = createSubnetGroup('postgress-subnet-grp', [privateSubnet1, privateSubnet2])
+launchPostgresInstance('cloudos', sg, subnetGroup, key)
+/** ********************************* RDS CREATION ********************************* */

@@ -22,16 +22,17 @@ export const createIpTargetGroup = (name: string, vpc: Vpc, ip: string | Output<
     protocol: "TCP",
     targetType: "ip", // Target type is IP addresses
     vpcId: vpc.id,
-    healthCheck: {
-        path: "/",
-        protocol: "HTTPS",
-    }
+    // healthCheck: {
+    //     path: "/",
+    //     protocol: "HTTPS",
+    // }
   })
 
   new TargetGroupAttachment(`${name}-target-group-attachment`, {
     targetGroupArn: targetGroup.arn,
     targetId: ip,  // IP of the target
-    port: port,
+    port,
+    
   })
 
   return targetGroup
