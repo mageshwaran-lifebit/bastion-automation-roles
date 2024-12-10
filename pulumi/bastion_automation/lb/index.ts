@@ -2,6 +2,7 @@ import * as aws from "@pulumi/aws";
 import { TargetGroup, TargetGroupAttachment } from "@pulumi/aws/alb";
 import { Subnet, Vpc } from "@pulumi/aws/ec2";
 import { Listener, LoadBalancer } from "@pulumi/aws/lb";
+import { Output } from "@pulumi/pulumi";
 
 
 export const createNetworkLoadBalancer = (name: string, subnets: Subnet[], enableDeletionProtection: boolean) => {
@@ -15,7 +16,7 @@ export const createNetworkLoadBalancer = (name: string, subnets: Subnet[], enabl
   })
 }
 
-export const createIpTargetGroup = (name: string, vpc: Vpc, ip: string, port: number) => {
+export const createIpTargetGroup = (name: string, vpc: Vpc, ip: string | Output<string>, port: number) => {
   const targetGroup = new aws.lb.TargetGroup(`${name}-target-group`, {
     port: port,
     protocol: "TCP",

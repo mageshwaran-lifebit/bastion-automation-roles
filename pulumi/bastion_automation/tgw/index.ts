@@ -13,8 +13,8 @@ export const createTgw = (name: string, description: string = 'sample descriptio
     autoAcceptSharedAttachments: "enable",
     dnsSupport: "enable",
     securityGroupReferencingSupport: "enable",
-    defaultRouteTableAssociation: "disable",
-    defaultRouteTablePropagation: "disable",
+    defaultRouteTableAssociation: "enable",
+    defaultRouteTablePropagation: "enable",
     vpnEcmpSupport: "disable",
     multicastSupport: 'disable'
   })

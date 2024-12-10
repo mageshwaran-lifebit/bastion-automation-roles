@@ -1,4 +1,4 @@
-import { InternetGateway, NatGateway, Route, RouteTable, RouteTableAssociation, SecurityGroup, Subnet, Vpc, VpcEndpoint } from "@pulumi/aws/ec2"
+import { Eip, getElasticIp, InternetGateway, NatGateway, Route, RouteTable, RouteTableAssociation, SecurityGroup, Subnet, Vpc, VpcEndpoint } from "@pulumi/aws/ec2"
 import { commonTags } from "../util"
 import { getAvailabilityZones } from "@pulumi/aws/getAvailabilityZones.js"
 import { VpcAttachment } from "@pulumi/aws/ec2transitgateway"
@@ -91,8 +91,14 @@ export const createInternetGw = (name: string, vpc: Vpc): InternetGateway => {
 }
 
 export const createNatGw = (name: string, subnet: Subnet): NatGateway => {
+  const eip = new Eip(`${name}-ip`,{
+    tags: {
+      ...commonTags
+    }
+  })
   return new NatGateway(name, {
     subnetId: subnet.id,
+    allocationId: eip.id,
     connectivityType: 'public',
     tags: {
       ...commonTags,

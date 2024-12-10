@@ -1,0 +1,22 @@
+Common
+  RAM
+  TGW
+  TGW attachment
+
+  TGW ROute table
+
+  VPC
+  Subnet
+  Route table
+
+  security group
+
+firewall:
+  EC2
+  subscribing aws market place
+  iam role
+  s3 bucket
+
+non-firewall:
+  nlb
+  
