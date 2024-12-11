@@ -6,6 +6,6 @@ config:
     # roleArn: arn:aws:iam::017642882492:role/bastion-automation-fortigate-v2-role
     # roleArn: arn:aws:iam::017642882492:role/bastion-automation-procurement-role
     # roleArn: arn:aws:iam::017642882492:role/lifebit-workload-network-manager-role
-    roleArn: arn:aws:iam::017642882492:role/lifebit-network-manager-role
+    roleArn: arn:aws:iam::017642882492:role/lifebit-network-manager-us-west-2-role
   sample: test
 

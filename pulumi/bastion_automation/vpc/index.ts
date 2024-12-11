@@ -1,4 +1,4 @@
-import { Eip, getElasticIp, InternetGateway, NatGateway, Route, RouteTable, RouteTableAssociation, SecurityGroup, Subnet, Vpc, VpcEndpoint } from "@pulumi/aws/ec2"
+import { Eip, getElasticIp, Instance, InternetGateway, NatGateway, NetworkInterface, Route, RouteTable, RouteTableAssociation, SecurityGroup, Subnet, Vpc, VpcEndpoint } from "@pulumi/aws/ec2"
 import { commonTags } from "../util"
 import { getAvailabilityZones } from "@pulumi/aws/getAvailabilityZones.js"
 import { VpcAttachment } from "@pulumi/aws/ec2transitgateway"
@@ -62,6 +62,14 @@ export const pointRouteToTgw = (name: string, rt: RouteTable, tgwAttachment: Vpc
     transitGatewayId: tgwAttachment.transitGatewayId,
     destinationCidrBlock
   }, { dependsOn: tgwAttachment })
+}
+
+export const pointRouteToEni = (name: string, rt: RouteTable, networkInterface: NetworkInterface, destinationCidrBlock: string): void => {
+  new Route(`${name}-route`, {
+    routeTableId: rt.id,
+    networkInterfaceId: networkInterface.id,
+    destinationCidrBlock
+  }, { dependsOn: networkInterface })
 }
 
 export const pointRouteToNat = (name: string, rt: RouteTable, gateway: NatGateway): void => {

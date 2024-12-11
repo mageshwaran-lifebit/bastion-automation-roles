@@ -1,6 +1,6 @@
 {
     "name": "bastion_automation",
-    "main": "network-non-firewall.ts",
+    "main": "network-firewall.ts",
     "devDependencies": {
         "@types/node": "^18",
         "typescript": "^5.0.0"
